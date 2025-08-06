@@ -9,4 +9,5 @@ pub struct JavaOptions {
     pub classpath: Option<Vec<String>>,
     /// Whether to ignore unreadable class path entries
     pub ignore_unreadable_class_path_entries: Option<bool>,
+    pub working_dir: Option<String>
 }

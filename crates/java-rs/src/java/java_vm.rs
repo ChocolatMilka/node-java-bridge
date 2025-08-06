@@ -9,6 +9,8 @@ use std::ffi::{c_void, CString};
 use std::os::raw::c_char;
 use std::path::Path;
 use std::sync::{Arc, Mutex};
+use std::path::PathBuf;
+use std::env;
 
 /// The Java Virtual Machine.
 /// This is the main entry point to the JNI interface.
@@ -27,7 +29,12 @@ struct JavaVMOption {
 
 impl JavaVM {
     /// Create a new Java Virtual Machine.
-    pub fn new(version: &str, library_path: Option<String>, args: &[String]) -> ResultType<Self> {
+    pub fn new(
+        version: &str,
+        library_path: Option<String>,
+        args: &[String],
+        working_dir: Option<PathBuf>
+    ) -> ResultType<Self> {
         if !library_loaded() {
             let lib_path = match library_path {
                 Some(lib_path) => lib_path,
@@ -68,6 +75,20 @@ impl JavaVM {
             ignoreUnrecognized: 0,
         };
 
+        let original_cwd = env::current_dir().ok();
+
+        if let Some(ref dir) = working_dir {
+            if !dir.exists() {
+                std::fs::create_dir_all(dir).map_err(|e| {
+                    JNIError::new(format!("Failed to create working dir {:?}: {}", dir, e))
+                })?;
+            }
+
+            env::set_current_dir(dir).map_err(|e| {
+                JNIError::new(format!("Failed to set working dir: {}", e))
+            })?;
+        }
+
         let create_res: i32 = unsafe {
             create_fn(
                 &mut ptr,
@@ -75,6 +96,10 @@ impl JavaVM {
                 &vm_args as *const _ as *mut _,
             )
         };
+
+        if let Some(ref cwd) = original_cwd {
+            let _ = env::set_current_dir(cwd);
+        }
 
         if create_res != 0 {
             return Err(JNIError::new(format!(

@@ -23,6 +23,8 @@ use java_rs::objects::string::JavaString;
 use napi::{Env, JsFunction, JsObject, JsUnknown, ValueType};
 use std::collections::HashMap;
 use std::sync::Arc;
+use std::path::PathBuf;
+
 
 /// The main java class.
 /// This should only be created once per process.
@@ -72,7 +74,14 @@ impl Java {
         }
 
         debug!("Parsed startup args: {:?}", args);
-        let root_vm = JavaVM::new(&ver, lib_path, &args).map_napi_err(Some(env))?;
+
+        let working_dir = java_options
+            .as_ref()
+            .and_then(|opt| opt.working_dir.as_ref())
+            .map(|s| PathBuf::from(s))
+            .or_else(|| Some(PathBuf::from(".")));
+
+        let root_vm = JavaVM::new(&ver, lib_path, &args, working_dir).map_napi_err(Some(env))?;
 
         let java_env = root_vm.attach_thread().map_napi_err(Some(env))?;
         java_env
