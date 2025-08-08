@@ -1,9 +1,4 @@
-# java-bridge
-
-[![Test](https://github.com/MarkusJx/node-java-bridge/actions/workflows/test.yml/badge.svg)](https://github.com/MarkusJx/node-java-bridge/actions/workflows/test.yml)
-[![Check-style](https://github.com/MarkusJx/node-java-bridge/actions/workflows/check-style.yml/badge.svg)](https://github.com/MarkusJx/node-java-bridge/actions/workflows/check-style.yml)
-
-<!--[![SystemTest](https://github.com/MarkusJx/node-java-bridge/actions/workflows/system_test.yml/badge.svg)](https://github.com/MarkusJx/node-java-bridge/actions/workflows/system_test.yml)-->
+# java-bridge-evolved
 
 A bridge between Node.js programs and Java APIs written in Rust
 using [napi-rs](https://napi.rs/)
@@ -15,16 +10,15 @@ for this package to use. In contrast to other `node.js <-> java` interfaces,
 the binary is not hard linked to the JDK it has been compiled with but rather
 loads the jvm native library dynamically when the program first starts up.
 
-The full documentation of this package is
-available [here](https://markusjx.github.io/node-java-bridge/).
+### Credits:
+This lib is forked from [node-java-bridge (MarkusJx)](https://github.com/MarkusJx/node-java-bridge)
 
-**NOTE: As of version `2.1.0`, this package has been renamed from `@markusjx/java`
-to `java-bridge`.**
+The legacy documentation [here](https://markusjx.github.io/node-java-bridge/).
 
 ## Installation
 
 ```shell
-npm i java-bridge
+npm i java-bridge-evolved
 ```
 
 _Note: In order to use this package on windows, you'll need to install
@@ -83,7 +77,7 @@ npm run build
 ### Example: Hello world from Java
 
 ```ts
-import { importClass } from './java-bridge';
+import { importClass } from 'java-bridge-evolved';
 
 const System = importClass('java.lang.System');
 System.out.println('Hello world!');
@@ -104,7 +98,7 @@ start the jvm with no extra options. This is also called when any call to the jv
 but the jvm is not yet started.
 
 ```ts
-import { ensureJvm } from 'java-bridge';
+import { ensureJvm } from 'java-bridge-evolved';
 
 ensureJvm();
 ```
@@ -117,12 +111,18 @@ specifying the location of the jvm native library or passing additional argument
 jvm.
 
 ```ts
-import { ensureJvm, JavaVersion } from 'java-bridge';
+import { ensureJvm, JavaVersion } from 'java-bridge-evolved';
 
 ensureJvm({
     libPath: 'path/to/jvm.dll',
     version: JavaVersion.VER_9,
     opts: ['-Xms512m', '-Xmx512m'],
+
+    /* News params: */
+
+    /* JVM will run in this directory, not ./
+    So now, java & js parts can be separated */
+    workingDir: './my-project/' 
 });
 ```
 
@@ -175,7 +175,7 @@ from the JVM using [`importClass`](#synchronous-calls)
 or [`importClassAsync`](#asynchronous-calls).
 
 ```ts
-import { appendClasspath } from 'java-bridge';
+import { appendClasspath } from 'java-bridge-evolved';
 
 // Append a single jar to the class path
 appendClasspath('/path/to/jar.jar');
@@ -187,7 +187,7 @@ appendClasspath(['/path/to/jar1.jar', '/path/to/jar2.jar']);
 or
 
 ```ts
-import { classpath } from 'java-bridge';
+import { classpath } from 'java-bridge-evolved';
 
 // Append a single jar to the class path
 classpath.append('/path/to/jar.jar');
@@ -214,7 +214,7 @@ Using this method does not affect your ability to call any method of the class
 asynchronously.
 
 ```ts
-import { importClass } from 'java-bridge';
+import { importClass } from 'java-bridge-evolved';
 
 // Import a class
 const JString = importClass('java.lang.String');
@@ -250,7 +250,7 @@ In order to import a class asynchronously, you can use the
 function.
 
 ```ts
-import { importClassAsync } from 'java-bridge';
+import { importClassAsync } from 'java-bridge-evolved';
 
 const JString = await importClassAsync('java.lang.String');
 
@@ -281,7 +281,7 @@ and can't wait for the java method to return while calling the proxy method at t
 time.
 
 ```ts
-import { newProxy } from 'java-bridge';
+import { newProxy } from 'java-bridge-evolved';
 
 const proxy = newProxy('path.to.MyInterface', {
     // Define methods...
@@ -302,7 +302,7 @@ process to the node.js process, you can use the
 method.
 
 ```ts
-import { stdout } from 'java-bridge';
+import { stdout } from 'java-bridge-evolved';
 
 const guard = stdout.enableRedirect(
     (_, data) => {
@@ -326,7 +326,7 @@ The throwable can be accessed using the `cause` property of the
 `JavaError` object.
 
 ```ts
-import type { JavaError } from 'java-bridge';
+import type { JavaError } from 'java-bridge-evolved';
 
 try {
     // Call a method that throws an error
@@ -344,7 +344,7 @@ before or while importing the class.
 Enabling this will cause the stack trace of the JavaScript error to be lost.
 
 ```ts
-import { importClass } from 'java-bridge';
+import { importClass } from 'java-bridge-evolved';
 
 const SomeClass = importClass('path.to.SomeClass', {
     asyncJavaExceptionObjects: true,

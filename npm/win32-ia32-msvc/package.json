@@ -1,6 +1,6 @@
 {
-    "name": "java-bridge-win32-ia32-msvc",
-    "version": "2.1.5",
+    "name": "java-bridge-evolved-win32-ia32-msvc",
+    "version": "1.0.0",
     "os": [
         "win32"
     ],

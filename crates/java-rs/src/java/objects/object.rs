@@ -19,6 +19,7 @@ use std::error::Error;
 use std::fmt::{Debug, Formatter};
 use std::sync::atomic::{AtomicPtr, Ordering};
 use std::sync::{Arc, Mutex};
+use std::path::PathBuf;
 
 pub struct LocalJavaObject<'a> {
     object: sys::jobject,
@@ -131,11 +132,13 @@ impl<'a> LocalJavaObject<'a> {
         /// ```rust
         /// use java_rs::java_vm::{JavaVM};
         /// use java_rs::objects::object::LocalJavaObject;
+        /// use std::path::PathBuf;
         ///
         /// let env = JavaVM::new(
         ///     &"1.8".to_string(),
         ///     None,
         ///     &vec![],
+        ///     Some(PathBuf::from("."))
         /// )
         /// .unwrap()
         /// .attach_thread()

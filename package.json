@@ -1,6 +1,6 @@
 {
-    "name": "java-bridge-forked",
-    "version": "1.0.0",
+    "name": "java-bridge-evolved",
+    "version": "1.0.1",
     "main": "dist/index.prod.min.js",
     "types": "dist/index.d.ts",
     "description": "A bridge between Node.js and Java APIs",
@@ -54,7 +54,7 @@
         "build:java": "run-script-os",
         "build:java:darwin:linux": "cd java-src && chmod +x gradlew && ./gradlew shadowJar",
         "build:java:win32": "cd java-src && .\\gradlew.bat shadowJar",
-        "prepublishOnly": "napi prepublish -t npm",
+        "prepublishOnly": "",
         "test": "npm run testOnly",
         "testOnly": "npm run mocha",
         "mocha": "cross-env NODE_OPTIONS=\"--import tsx\" mocha test/*.test.ts --reporter mocha-multi-reporters --reporter-options configFile=mocha-reporter-config.json",
@@ -107,12 +107,12 @@
         "webpack-node-externals": "^3.0.0"
     },
     "optionalDependencies": {
-        "java-bridge-darwin-arm64": "2.1.5",
-        "java-bridge-darwin-x64": "2.1.5",
-        "java-bridge-linux-arm64-gnu": "2.1.5",
-        "java-bridge-linux-x64-gnu": "2.1.5",
-        "java-bridge-linux-x64-musl": "2.1.5",
-        "java-bridge-win32-ia32-msvc": "2.1.5",
-        "java-bridge-win32-x64-msvc": "2.1.5"
+        "java-bridge-evolved-darwin-arm64": "^1.0.0",
+        "java-bridge-evolved-darwin-x64": "^1.0.0",
+        "java-bridge-evolved-linux-arm64-gnu": "^1.0.0",
+        "java-bridge-evolved-linux-x64-gnu": "^1.0.0",
+        "java-bridge-evolved-linux-x64-musl": "^1.0.0",
+        "java-bridge-evolved-win32-ia32-msvc": "^1.0.0",
+        "java-bridge-evolved-win32-x64-msvc": "^1.0.0"
     }
 }

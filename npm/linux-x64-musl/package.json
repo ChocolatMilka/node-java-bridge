@@ -1,6 +1,6 @@
 {
-    "name": "java-bridge-linux-x64-musl",
-    "version": "2.4.0",
+    "name": "java-bridge-evolved-linux-x64-musl",
+    "version": "1.0.0",
     "os": [
         "linux"
     ],

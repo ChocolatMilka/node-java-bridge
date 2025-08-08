@@ -1,8 +1,9 @@
 use crate::java::java_vm::JavaVM;
 use lazy_static::lazy_static;
+use std::path::PathBuf;
 
 lazy_static! {
-    static ref VM: JavaVM = JavaVM::new("1.8", None, &[]).unwrap();
+    static ref VM: JavaVM = JavaVM::new("1.8", None, &[], Some(PathBuf::from("."))).unwrap();
 }
 
 pub fn get_vm() -> JavaVM {

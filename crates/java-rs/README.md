@@ -16,6 +16,7 @@ fn create_jvm() -> ResultType<JavaVM> {
         &"1.8".to_string(),
         None,
         vec![],
+        Some(PathBuf::from(".")),
         InternalJavaOptions::default()
     )
 }

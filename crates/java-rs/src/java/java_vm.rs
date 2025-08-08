@@ -33,7 +33,7 @@ impl JavaVM {
         version: &str,
         library_path: Option<String>,
         args: &[String],
-        working_dir: Option<PathBuf>
+        working_dir: Option<PathBuf>,
     ) -> ResultType<Self> {
         if !library_loaded() {
             let lib_path = match library_path {
