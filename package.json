@@ -1,6 +1,6 @@
 {
-    "name": "@ChocolatMilka/java-bridge",
-    "version": "2.8.2",
+    "name": "java-bridge-forked",
+    "version": "1.0.0",
     "main": "dist/index.prod.min.js",
     "types": "dist/index.d.ts",
     "description": "A bridge between Node.js and Java APIs",
