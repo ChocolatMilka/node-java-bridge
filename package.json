@@ -1,6 +1,6 @@
 {
     "name": "java-bridge-evolved",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": "dist/index.prod.min.js",
     "types": "dist/index.d.ts",
     "description": "A bridge between Node.js and Java APIs",
