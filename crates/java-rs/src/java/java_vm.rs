@@ -97,10 +97,6 @@ impl JavaVM {
             )
         };
 
-        if let Some(ref cwd) = original_cwd {
-            let _ = env::set_current_dir(cwd);
-        }
-
         if create_res != 0 {
             return Err(JNIError::new(format!(
                 "Failed to create JavaVM: {}",
@@ -116,6 +112,10 @@ impl JavaVM {
         ptr.lock()
             .unwrap()
             .set_class_loader(thread.get_system_class_loader()?);
+
+        if let Some(ref cwd) = original_cwd {
+            let _ = env::set_current_dir(cwd);
+        }
 
         Ok(Self { ptr })
     }
