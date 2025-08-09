@@ -35,6 +35,18 @@ impl JavaVM {
         args: &[String],
         working_dir: Option<PathBuf>,
     ) -> ResultType<Self> {
+        if let Some(ref dir) = working_dir {
+            if !dir.exists() {
+                std::fs::create_dir_all(dir).map_err(|e| {
+                    JNIError::new(format!("Failed to create working dir {:?}: {}", dir, e))
+                })?;
+            }
+
+            env::set_current_dir(dir).map_err(|e| {
+                JNIError::new(format!("Failed to set working dir: {}", e))
+            })?;
+        }
+
         if !library_loaded() {
             let lib_path = match library_path {
                 Some(lib_path) => lib_path,
@@ -77,18 +89,6 @@ impl JavaVM {
 
         let original_cwd = env::current_dir().ok();
 
-        if let Some(ref dir) = working_dir {
-            if !dir.exists() {
-                std::fs::create_dir_all(dir).map_err(|e| {
-                    JNIError::new(format!("Failed to create working dir {:?}: {}", dir, e))
-                })?;
-            }
-
-            env::set_current_dir(dir).map_err(|e| {
-                JNIError::new(format!("Failed to set working dir: {}", e))
-            })?;
-        }
-
         let create_res: i32 = unsafe {
             create_fn(
                 &mut ptr,
@@ -113,9 +113,10 @@ impl JavaVM {
             .unwrap()
             .set_class_loader(thread.get_system_class_loader()?);
 
-        if let Some(ref cwd) = original_cwd {
-            let _ = env::set_current_dir(cwd);
-        }
+// Maybe we don't restore the cwd
+//         if let Some(ref cwd) = original_cwd {
+//             let _ = env::set_current_dir(cwd);
+//         }
 
         Ok(Self { ptr })
     }
