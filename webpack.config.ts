@@ -39,7 +39,7 @@ module.exports = {
                 test: /native\.js/,
                 loader: 'string-replace-loader',
                 options: {
-                    search: /require\(('java-bridge-[a-z\-0-9]+')\)/gi,
+                    search: /require\(('java-bridge-evolved-[a-z\-0-9]+')\)/gi,
                     replace: '__non_webpack_require__($1)',
                 },
             },
@@ -55,6 +55,10 @@ module.exports = {
                 {
                     from: './native.d.ts',
                     to: 'native.d.ts',
+                },
+                {
+                    from: './native.js',
+                    to: 'native.js',
                 },
             ],
         }),
