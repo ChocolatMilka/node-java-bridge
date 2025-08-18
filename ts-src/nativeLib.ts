@@ -16,7 +16,7 @@ function getModule(base: string, isPackagedElectron: boolean): string {
 
         return local;
     } else {
-        const module = base.replaceAll('.', '-').replace('java', 'java-bridge');
+        const module = base.replaceAll('.', '-').replace('java', 'java-bridge-evolved');
 
         let res: string;
         if (__non_webpack_require__ && __non_webpack_require__.resolve) {

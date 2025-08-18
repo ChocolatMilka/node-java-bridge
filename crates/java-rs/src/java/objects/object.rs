@@ -19,7 +19,6 @@ use std::error::Error;
 use std::fmt::{Debug, Formatter};
 use std::sync::atomic::{AtomicPtr, Ordering};
 use std::sync::{Arc, Mutex};
-use std::path::PathBuf;
 
 pub struct LocalJavaObject<'a> {
     object: sys::jobject,

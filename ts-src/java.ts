@@ -54,7 +54,7 @@ export interface JVMOptions extends JavaOptions {
  * Specify the path to jvm.(dylib|dll|so) manually,
  * specify the java version to use and set to use daemon threads.
  * ```ts
- * import { ensureJvm, JavaVersion } from 'java-bridge';
+ * import { ensureJvm, JavaVersion } from 'java-bridge-evolved';
  *
  * ensureJvm({
  *     libPath: 'path/to/jvm.dll',
@@ -78,7 +78,7 @@ export interface JVMOptions extends JavaOptions {
  *
  * If you need to set the class path *before* jvm startup, for example
  * when using libraries with custom class loaders, you'd need to call
- * `ensureJvm` *before* making any other call to `java-bridge` as those
+ * `ensureJvm` *before* making any other call to `java-bridge-evolved` as those
  * methods may themselves call `ensureJvm` with no arguments
  * (see comment above). Altering the startup classpath after jvm boot is
  * not possible, you can only alter the runtime classpath using
@@ -121,7 +121,7 @@ export function ensureJvm(options?: JVMOptions): boolean {
  *
  * ## Example
  * ```ts
- * import { getClassLoader, setClassLoader, importClass } from 'java-bridge';
+ * import { getClassLoader, setClassLoader, importClass } from 'java-bridge-evolved';
  *
  * const classLoader = getClassLoader();
  *
@@ -172,7 +172,7 @@ export function setClassLoader(classLoader: UnknownJavaClass): void {
  * ## Examples
  * ### Import ``java.util.ArrayList`` and create a new instance of it
  * ```ts
- * import { importClass } from 'java-bridge';
+ * import { importClass } from 'java-bridge-evolved';
  *
  * // Import java.util.ArrayList
  * const ArrayList = importClass('java.util.ArrayList');
@@ -183,7 +183,7 @@ export function setClassLoader(classLoader: UnknownJavaClass): void {
  *
  * ### Import ``java.util.ArrayList`` with types
  * ```ts
- * import { importClass, JavaClass, JavaType } from 'java-bridge';
+ * import { importClass, JavaClass, JavaType } from 'java-bridge-evolved';
  *
  * // Definitions for class java.util.List
  * declare class List<T extends JavaType> extends JavaClass {
@@ -223,7 +223,7 @@ export function setClassLoader(classLoader: UnknownJavaClass): void {
  *
  * ### Import ``java.util.ArrayList`` with custom config
  * ```ts
- * import { importClass, config } from 'java-bridge';
+ * import { importClass, config } from 'java-bridge-evolved';
  *
  * // Import java.util.ArrayList with custom config
  * const ArrayList = importClass('java.util.ArrayList', {
@@ -275,7 +275,7 @@ export function importClassAsync<
  * ## Example
  * ### Append single files
  * ```ts
- * import { appendClasspath } from 'java-bridge';
+ * import { appendClasspath } from 'java-bridge-evolved';
  *
  * // Append a single jar to the class path
  * appendClasspath('/path/to/jar.jar');
@@ -285,7 +285,7 @@ export function importClassAsync<
  * ```
  * or
  * ```ts
- * import { classpath } from 'java-bridge';
+ * import { classpath } from 'java-bridge-evolved';
  *
  * // Append a single jar to the class path
  * classpath.append('/path/to/jar.jar');
@@ -293,7 +293,7 @@ export function importClassAsync<
  *
  * ### Append a directory to the class path
  * ```ts
- * import { appendClasspath } from 'java-bridge';
+ * import { appendClasspath } from 'java-bridge-evolved';
  *
  * // Append a directory to the class path
  * appendClasspath('/path/to/dir/*');
@@ -338,7 +338,7 @@ export function deleteObject(obj: JavaClass): void {
  *
  * ## Example
  * ```ts
- * import { instanceOf, importClass } from 'java-bridge';
+ * import { instanceOf, importClass } from 'java-bridge-evolved';
  *
  * const ArrayList = importClass('java.util.ArrayList');
  * const list = new ArrayList();
@@ -374,7 +374,7 @@ export function isInstanceOf<T extends object>(
 /**
  * Methods for altering and querying the class path.
  * @example
- * import { classpath } from 'java-bridge';
+ * import { classpath } from 'java-bridge-evolved';
  *
  * // Append a jar to the class path
  * classpath.append('/path/to/jar.jar');
@@ -423,7 +423,7 @@ export type StdoutCallback = (err: Error | null, data?: string) => void;
  *
  * ## Example
  * ```ts
- * import { stdout } from 'java-bridge';
+ * import { stdout } from 'java-bridge-evolved';
  *
  * const guard = stdout.enableRedirect((_, data) => {
  *     console.log('Stdout:', data);
@@ -489,7 +489,7 @@ export namespace stdout {
      * ## Examples
      * ### Redirect all data to the js console
      * ```ts
-     * import { stdout } from 'java-bridge';
+     * import { stdout } from 'java-bridge-evolved';
      *
      * const guard = stdout.enableRedirect((_, data) => {
      *     console.log('Stdout:', data);
@@ -553,7 +553,7 @@ export namespace stdout {
  *
  * ## Example
  * ```ts
- * import { newProxy } from 'java-bridge';
+ * import { newProxy } from 'java-bridge-evolved';
  *
  * const proxy = newProxy('path.to.MyInterface', {
  *     // Define methods...
@@ -631,7 +631,7 @@ export type AnyProxyRecord = Record<string, ProxyMethod>;
  * ## Examples
  * ### Implement ``java.lang.Runnable``
  * ```ts
- * import { newProxy, importClass } from 'java-bridge';
+ * import { newProxy, importClass } from 'java-bridge-evolved';
  *
  * // Define the interface
  * const runnable = newProxy('java.lang.Runnable', {

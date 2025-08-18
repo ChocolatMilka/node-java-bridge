@@ -128,7 +128,7 @@ export type Constructor<T> = { new (): T };
  *
  * ## Example
  * ```ts
- * import { importClass } from 'java-bridge';
+ * import { importClass } from 'java-bridge-evolved';
  *
  * declare class PersonClass extends JavaClass {
  *     public constructor(name: string, age: number);
@@ -170,7 +170,7 @@ export declare class JavaClass extends JavaObject {
      *
      * ## Example
      * ```ts
-     * import { importClass } from 'java-bridge';
+     * import { importClass } from 'java-bridge-evolved';
      *
      * const JavaString = importClass('java.lang.String');
      * const str = new JavaString('Hello World');

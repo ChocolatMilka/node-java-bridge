@@ -145,8 +145,8 @@ electron-builder, you can do this by adding the following to your `package.json`
 {
     "build": {
         "asarUnpack": [
-            "node_modules/java-bridge/**",
-            "node_modules/java-bridge-*/**"
+            "node_modules/java-bridge-evolved/**",
+            "node_modules/java-bridge-evolved-*/**"
         ]
     }
 }

@@ -120,7 +120,7 @@ async function run() {
             gen.moduleDeclarations[i] = {
                 ...declaration,
                 contents: declaration.contents.replaceAll(
-                    'from "java-bridge";',
+                    'from "java-bridge-evolved";',
                     `from ${JSON.stringify(path.join(__dirname, '..'))};`
                 ),
             };
@@ -145,7 +145,7 @@ async function updateImports(): Promise<void> {
                 await fs.promises.writeFile(
                     file,
                     contents.replaceAll(
-                        'from "java-bridge";',
+                        'from "java-bridge-evolved";',
                         `from ${JSON.stringify(path.join(__dirname, '..'))};`
                     )
                 );

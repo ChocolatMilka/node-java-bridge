@@ -87,8 +87,6 @@ impl JavaVM {
             ignoreUnrecognized: 0,
         };
 
-        let original_cwd = env::current_dir().ok();
-
         let create_res: i32 = unsafe {
             create_fn(
                 &mut ptr,
