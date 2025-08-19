@@ -55,11 +55,7 @@ module.exports = {
                 {
                     from: './native.d.ts',
                     to: 'native.d.ts',
-                },
-                {
-                    from: './native.js',
-                    to: 'native.js',
-                },
+                }
             ],
         }),
     ],
