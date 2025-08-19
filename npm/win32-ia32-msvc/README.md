@@ -1,3 +1,3 @@
-# `java-bridge-win32-ia32-msvc`
+# `java-bridge-evolved-win32-ia32-msvc`
 
-This is the **i686-pc-windows-msvc** binary for `java-bridge`
+This is the **i686-pc-windows-msvc** binary for `java-bridge-evolved`

@@ -1,3 +1,3 @@
-# `java-bridge-linux-arm64-gnu`
+# `java-bridge-evolved-linux-arm64-gnu`
 
-This is the **aarch64-unknown-linux-gnu** binary for `java-bridge`
+This is the **aarch64-unknown-linux-gnu** binary for `java-bridge-evolved`

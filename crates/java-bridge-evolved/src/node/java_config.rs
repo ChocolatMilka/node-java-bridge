@@ -88,7 +88,7 @@ impl JavaConfig {
     ///
     /// ## Example
     /// ```ts
-    /// import { config, clearClassProxies } from 'java-bridge';
+    /// import { config, clearClassProxies } from 'java-bridge-evolved';
     ///
     /// // Set the async suffix in order to prevent errors
     /// config.asyncSuffix = 'Async';

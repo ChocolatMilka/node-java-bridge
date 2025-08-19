@@ -1,3 +1,3 @@
-# `java-bridge-darwin-arm64`
+# `java-bridge-evolved-darwin-arm64`
 
-This is the **aarch64-apple-darwin** binary for `java-bridge`
+This is the **aarch64-apple-darwin** binary for `java-bridge-evolved`

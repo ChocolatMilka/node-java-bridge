@@ -15,7 +15,7 @@
 ///
 /// ## Example
 /// ```ts
-/// import { logging } from 'java-bridge';
+/// import { logging } from 'java-bridge-evolved';
 ///
 /// logging.initLogger('log4rs.json');
 /// logging.setLogCallbacks(
@@ -119,7 +119,7 @@ mod logging {
     ///
     /// ## Example
     /// ```ts
-    /// import { logging } from 'java-bridge';
+    /// import { logging } from 'java-bridge-evolved';
     ///
     /// logging.setLogCallbacks(
     ///   (out) => console.log(out),

@@ -1,3 +1,3 @@
-# `java-bridge-linux-x64-musl`
+# `java-bridge-evolved-linux-x64-musl`
 
-This is the **x86_64-unknown-linux-musl** binary for `java-bridge`
+This is the **x86_64-unknown-linux-musl** binary for `java-bridge-evolved`
