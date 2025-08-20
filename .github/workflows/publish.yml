@@ -101,7 +101,6 @@ jobs:
 
     build-musl:
         runs-on: ubuntu-latest
-        container: ubuntu:20.04
         steps:
             - uses: actions/checkout@v4
             - name: Build
@@ -137,7 +136,6 @@ jobs:
     draft-release:
         needs: [build, build-musl]
         runs-on: ubuntu-latest
-        container: ubuntu:20.04
         if: github.ref == 'refs/heads/main' && github.event.inputs.dry-run != 'true'
         steps:
             - name: Checkout
