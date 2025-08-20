@@ -180,6 +180,7 @@ jobs:
                   options: -v ${{ github.workspace }}:/github/workspace -w /github/workspace --platform linux/arm64
                   run: |
                       apt-get update
+                      sudo apt-get install libc6 -y
                       apt-get install ca-certificates-java -y
                       apt-get install openjdk-17-jre-headless -y
                       apt-get remove -y openjdk-11*
