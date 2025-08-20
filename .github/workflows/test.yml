@@ -16,6 +16,7 @@ concurrency:
 jobs:
     test-cargo:
         runs-on: ubuntu-latest
+        container: ubuntu:20.04
 
         steps:
             - uses: actions/checkout@v4
@@ -29,6 +30,7 @@ jobs:
 
     test-cargo-all:
         runs-on: ubuntu-latest
+        container: ubuntu:20.04
 
         steps:
             - uses: actions/checkout@v4
@@ -136,6 +138,7 @@ jobs:
             matrix:
                 node-version: [20, 22]
         runs-on: ubuntu-latest
+        container: ubuntu:20.04
         steps:
             - uses: actions/checkout@v4
             - name: Setup Node.js ${{matrix.node-version}} environment
@@ -210,6 +213,7 @@ jobs:
             matrix:
                 node-version: [20, 22]
         runs-on: ubuntu-latest
+        container: ubuntu:20.04
         steps:
             - uses: actions/checkout@v4
             - name: Rust Cache
@@ -245,6 +249,7 @@ jobs:
 
     benchmark:
         runs-on: ubuntu-latest
+        container: ubuntu:20.04
         steps:
             - uses: actions/checkout@v4
             - name: Setup Node.js environment
